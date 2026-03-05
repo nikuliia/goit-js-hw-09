@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -66,7 +69,7 @@ const images = [
 
 console.log(images);
 
-const ulElem = document.querySelector('ul.gallery');
+// const ulElem = document.querySelector('ul.gallery');
 
 function imgTemplate(obj) {
   return `<li class="gallery-item">
@@ -85,7 +88,16 @@ function imgsTemplate(images) {
   return images.map(imgTemplate).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const markup = imgsTemplate(images);
-  ulElem.innerHTML = markup;
+// document.addEventListener('DOMContentLoaded', () => {
+//   const markup = imgsTemplate(images);
+//   ulElem.innerHTML = markup;
+// });
+
+const ulImg = document.querySelector('.gallery');
+ulImg.insertAdjacentHTML('beforeend', imgsTemplate(images));
+
+let gallery = new SimpleLightbox('.gallery a', {
+  captions: true, // tells the library whether to show text at all
+  captionsData: 'alt', // tells the library which attribute to grab the text from
+  captionDelay: 250, // Sets a timer in milliseconds before the text appears
 });
