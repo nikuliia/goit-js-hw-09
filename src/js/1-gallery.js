@@ -67,10 +67,6 @@ const images = [
   },
 ];
 
-console.log(images);
-
-// const ulElem = document.querySelector('ul.gallery');
-
 function imgTemplate(obj) {
   return `<li class="gallery-item">
 	<a class="gallery-link" href="${obj.original}">
@@ -87,11 +83,6 @@ function imgTemplate(obj) {
 function imgsTemplate(images) {
   return images.map(imgTemplate).join('');
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//   const markup = imgsTemplate(images);
-//   ulElem.innerHTML = markup;
-// });
 
 const ulImg = document.querySelector('.gallery');
 ulImg.insertAdjacentHTML('beforeend', imgsTemplate(images));

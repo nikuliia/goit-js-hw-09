@@ -3,13 +3,13 @@ const STORAGE_KEY = 'feedback-form-state';
 
 const refs = {
   form: document.querySelector('.feedback-form'),
-  email: document.querySelector('input[name="email"'),
+  email: document.querySelector('input[name="email]"'),
   message: document.querySelector('textarea[name="message"]'),
 };
 
-refs.form.addEventListener('input', e => {
-  const formData = new FormData(refs.form);
+const formData = new FormData(refs.form);
 
+refs.form.addEventListener('input', e => {
   const obj = {
     email: formData.get('email'),
     message: formData.get('message'),
@@ -31,8 +31,6 @@ document.addEventListener('DOMContentLoaded', e => {
 
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
-
-  const formData = new FormData(refs.form);
 
   const obj = {
     email: formData.get('email').trim(),
