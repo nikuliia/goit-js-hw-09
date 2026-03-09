@@ -15,7 +15,7 @@ refs.form.addEventListener('input', e => {
     message: formData.get('message'),
   };
 
-  console.log(obj);
+  //   console.log(obj);
 
   const zip = JSON.stringify(obj);
   localStorage.setItem(STORAGE_KEY, zip);
@@ -24,7 +24,25 @@ refs.form.addEventListener('input', e => {
 document.addEventListener('DOMContentLoaded', e => {
   const storageData = localStorage.getItem(STORAGE_KEY);
 
-  const data = JSON.parse(storageData);
-  refs.form.elements.email.value = data.email.trim();
-  refs.form.elements.message.value = data.message.trim();
+  const data = JSON.parse(storageData) || {};
+  refs.form.elements.email.value = data.email || '';
+  refs.form.elements.message.value = data.message || '';
+});
+
+refs.form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const formData = new FormData(refs.form);
+
+  const obj = {
+    email: formData.get('email').trim(),
+    message: formData.get('message').trim(),
+  };
+  if (obj.email === '' || obj.message === '') {
+    return alert(`Fill please all fields`);
+  }
+  console.log(obj);
+
+  localStorage.removeItem(STORAGE_KEY);
+  refs.form.reset();
 });
